@@ -4,12 +4,24 @@ class Game {
         this.fixedStones = []
         this.reachedBottom  = false
         this.bottomPostition = []
+        
+        this.outerBorder = []
+        this.occupiedFields = []
     }
     setup() {
         let canvas = createCanvas(canvasWidth, canvasHeight);
         for (let i = 0; i < canvasFieldNumWidth; i++) {
             this.bottomPostition.push(canvasFieldNumHeight - 1)
         }
+        for (let i = 0; i < canvasFieldNumHeight; i++) {
+            this.outerBorder.push({x: 0, y: i})
+            this.outerBorder.push({x: canvasFieldNumWidth - 1, y: i})
+        }
+        for (let i = 0; i < canvasFieldNumWidth; i++) {
+            this.outerBorder.push({x: i, y: canvasFieldNumHeight - 1})
+        }
+        this.occupiedFields = [...this.outerBorder]
+        console.log(this.occupiedFields)
     }
     draw() {
         if (frameCount % initialSpped === 0) { 
@@ -22,7 +34,9 @@ class Game {
                     this.reachedBottom = true
                 }
             })
-            if (!this.reachedBottom) {
+
+
+            if (!this.detectCollision()) {
                 this.movingStones.forEach(stone => {
                     stone.y += 1
                 })
@@ -104,5 +118,22 @@ class Game {
             stone.y++
             })
         }
+    }
+
+    detectCollision() {
+        let numCollisions = 0
+        this.movingStones.forEach(stone => {
+            // return [this.occupiedFields].includes([stone.x, stone.y])
+            const collisionStoneOccupied = this.occupiedFields.map(function(occupiedField) {
+                return occupiedField.x === stone.x && occupiedField.y === stone.y
+            })
+            collisionStoneOccupied.forEach(potentialCollision => {
+                if(potentialCollision) {
+                    numCollisions += 1
+                }
+            })
+        })
+        if (numCollisions > 0) return true
+        else return false
     }
 }
