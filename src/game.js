@@ -8,7 +8,7 @@ class Game {
     setup() {
         let canvas = createCanvas(canvasWidth, canvasHeight);
         for (let i = 0; i < canvasFieldNumWidth; i++) {
-            this.bottomPostition.push(canvasHeight - canvasSquareLength)
+            this.bottomPostition.push(canvasFieldNumHeight - 1)
         }
     }
     draw() {
@@ -24,7 +24,7 @@ class Game {
             })
             if (!this.reachedBottom) {
                 this.movingStones.forEach(stone => {
-                    stone.y += canvasSquareLength
+                    stone.y += 1
                 })
             } else {
                 // set all stones to fixed list
@@ -34,7 +34,7 @@ class Game {
                 this.movingStones = []
                 // reset bottom list
                 this.fixedStones.forEach(stone => {
-                    this.bottomPostition[stone.x] = Math.min(this.bottomPostition[stone.x], stone.y - canvasSquareLength)
+                    this.bottomPostition[stone.x] = Math.min(this.bottomPostition[stone.x], stone.y - 1)
                 })
                 // initiate new stones & reset reached bottom
                 this.reachedBottom = false
