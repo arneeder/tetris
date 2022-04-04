@@ -1,7 +1,8 @@
 class Game {
     constructor() {
-        this.stones = [new Stone]
-        this.fixedStones = 0
+        this.movingStones = [new Stone]
+        this.fixedStones = []
+        this.reachedBottom  = false
         this.bottomPostition = []
     }
     setup() {
@@ -14,26 +15,32 @@ class Game {
         if (frameCount % initialSpped === 0) {
             clear()
             this.drawGrid()
-            this.stones.forEach(stone => {
-                
-                if (stone.y < this.bottomPostition[stone.x]) {
-                    stone.y += canvasSquareLength
-                } else if (stone.isMoving === true) {
-                    stone.isMoving = false
-                    console.log('bottomPostion before: ' + this.bottomPostition[ stone.x ])
-                    this.bottomPostition[ stone.x ] -= canvasSquareLength
-                    console.log('bottomPostion after: ' + this.bottomPostition[ stone.x ])
+            this.drawAllStones()
+            
+            this.movingStones.forEach(stone => {  
+                if (stone.y >= this.bottomPostition[stone.x]) {
+                    this.reachedBottom = true
                 }
-                
-                stone.draw()
-
             })
-            if (this.fixedStones !== this.stones.filter(el => { return el.isMoving === false }).length) {
-                this.fixedStones = this.stones.length
-                this.stones.push(new Stone)
-                this.stones.forEach(stone => { stone.preload() })
-                console.log('isMoving false - statement was executed')
-            } 
+            if (!this.reachedBottom) {
+                this.movingStones.forEach(stone => {
+                    stone.y += canvasSquareLength
+                })
+            } else {
+                // set all stones to fixed list
+                this.movingStones.forEach(stone => {
+                    this.fixedStones.push(stone)
+                })
+                this.movingStones = []
+                // reset bottom list
+                this.fixedStones.forEach(stone => {
+                    this.bottomPostition[stone.x] = Math.min(this.bottomPostition[stone.x], stone.y - canvasSquareLength)
+                })
+                // initiate new stones & reset reached bottom
+                this.reachedBottom = false
+                this.movingStones.push(new Stone)
+                this.movingStones.forEach(stone => { stone.preload() })
+            }
         }
     }
     
@@ -54,4 +61,9 @@ class Game {
             line(j * canvasSquareLength, 0, j * canvasSquareLength, canvasHeight)
         }
     }
+    drawAllStones() {
+        this.fixedStones.forEach(stone => { stone.draw() })
+        this.movingStones.forEach(stone => { stone.draw() })
+    }
+
 }
