@@ -14,3 +14,10 @@ function setup() {
 function draw() {
     game.draw()
 }
+
+function keyPressed() {
+    if (keyCode === LEFT_ARROW) { game.moveFigureLeft() }
+    if (keyCode === RIGHT_ARROW) { game.moveFigureRight() }
+    if (keyCode === DOWN_ARROW) { game.moveFigureDown() }
+    // if (keyCode === UP_ARROW) { game.turnFigure() }
+}

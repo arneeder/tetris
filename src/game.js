@@ -63,8 +63,46 @@ class Game {
             line(j * canvasSquareLength, 0, j * canvasSquareLength, canvasHeight)
         }
     }
+
     drawAllStones() {
         this.fixedStones.forEach(stone => { stone.draw() })
         this.movingStones.forEach(stone => { stone.draw() })
+    }
+
+    moveFigureLeft() {
+        // find current left border of figure
+        const leftBorder = this.movingStones.reduce(function(acc, val) {
+            return Math.min(acc, val.x)
+        }, canvasFieldNumWidth)
+        // move left, if still in canvas
+        if (leftBorder > 0) {
+            this.movingStones.forEach(stone => {
+            stone.x--
+            })
+        }
+    }
+    moveFigureRight() {
+        // find current left border of figure
+        const rightBorder = this.movingStones.reduce(function(acc, val) {
+            return Math.max(acc, val.x)
+        }, 0)
+        // move left, if still in canvas
+        if (rightBorder < canvasFieldNumWidth - 1) {
+            this.movingStones.forEach(stone => {
+            stone.x++
+            })
+        }
+    }
+    moveFigureDown() {
+        // find current left border of figure
+        const lowerBorder = this.movingStones.reduce(function(acc, val) {
+            return Math.max(acc, val.y)
+        }, 0)
+        // move left, if still in canvas
+        if (lowerBorder < canvasFieldNumHeight - 1) {
+            this.movingStones.forEach(stone => {
+            stone.y++
+            })
+        }
     }
 }
