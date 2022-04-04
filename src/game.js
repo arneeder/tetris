@@ -1,6 +1,6 @@
 class Game {
-    constructor() {
-        this.movingStones = [new Stone]
+    constructor(initialStones) {
+        this.movingStones = initialStones
         this.fixedStones = []
         this.reachedBottom  = false
         this.bottomPostition = []
@@ -12,7 +12,7 @@ class Game {
         }
     }
     draw() {
-        if (frameCount % initialSpped === 0) {
+        if (frameCount % initialSpped === 0) { 
             clear()
             this.drawGrid()
             this.drawAllStones()
@@ -38,7 +38,9 @@ class Game {
                 })
                 // initiate new stones & reset reached bottom
                 this.reachedBottom = false
-                this.movingStones.push(new Stone)
+                let newFigure = this.createFigureLine()
+                newFigure.forEach(stone => { this.movingStones.push(stone) })
+                //this.movingStones.push(new Stone)
                 this.movingStones.forEach(stone => { stone.preload() })
             }
         }
@@ -66,4 +68,12 @@ class Game {
         this.movingStones.forEach(stone => { stone.draw() })
     }
 
+    createFigureLine() {
+        const figureLine = []
+        for (let i =4; i > 0; i--) {
+            let newStone = new Stone (5, -i, true)
+            figureLine.push(newStone)
+        }
+        return figureLine
+    }
 }
