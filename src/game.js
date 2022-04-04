@@ -1,7 +1,40 @@
 class Game {
-
+    constructor() {
+        this.stones = [new Stone]
+        this.fixedStones = 0
+        this.bottomPostition = []
+    }
+    setup() {
+        let canvas = createCanvas(canvasWidth, canvasHeight);
+        for (let i = 0; i < canvasFieldNumWidth; i++) {
+            this.bottomPostition.push(canvasHeight - canvasSquareLength)
+        }
+    }
     draw() {
-        this.drawGrid()
+        if (frameCount % initialSpped === 0) {
+            clear()
+            this.drawGrid()
+            this.stones.forEach(stone => {
+                
+                if (stone.y < this.bottomPostition[stone.x]) {
+                    stone.y += canvasSquareLength
+                } else if (stone.isMoving === true) {
+                    stone.isMoving = false
+                    console.log('bottomPostion before: ' + this.bottomPostition[ stone.x ])
+                    this.bottomPostition[ stone.x ] -= canvasSquareLength
+                    console.log('bottomPostion after: ' + this.bottomPostition[ stone.x ])
+                }
+                
+                stone.draw()
+
+            })
+            if (this.fixedStones !== this.stones.filter(el => { return el.isMoving === false }).length) {
+                this.fixedStones = this.stones.length
+                this.stones.push(new Stone)
+                this.stones.forEach(stone => { stone.preload() })
+                console.log('isMoving false - statement was executed')
+            } 
+        }
     }
     drawGrid() {
         // DRAW FRAME
