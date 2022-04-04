@@ -14,11 +14,11 @@ class Game {
             this.bottomPostition.push(canvasFieldNumHeight - 1)
         }
         for (let i = 0; i < canvasFieldNumHeight; i++) {
-            this.outerBorder.push({x: 0, y: i})
-            this.outerBorder.push({x: canvasFieldNumWidth - 1, y: i})
+            this.outerBorder.push({x: -1, y: i})
+            this.outerBorder.push({x: canvasFieldNumWidth, y: i})
         }
         for (let i = 0; i < canvasFieldNumWidth; i++) {
-            this.outerBorder.push({x: i, y: canvasFieldNumHeight - 1})
+            this.outerBorder.push({x: i, y: canvasFieldNumHeight})
         }
         this.occupiedFields = [...this.outerBorder]
         console.log(this.occupiedFields)
@@ -29,12 +29,6 @@ class Game {
             this.drawGrid()
             this.drawAllStones()
             
-            this.movingStones.forEach(stone => {  
-                if (stone.y >= this.bottomPostition[stone.x]) {
-                    this.reachedBottom = true
-                }
-            })
-
 
             if (!this.detectCollision()) {
                 this.movingStones.forEach(stone => {
@@ -47,11 +41,17 @@ class Game {
                 })
                 this.movingStones = []
                 // reset bottom list
+                // this.fixedStones.forEach(stone => {
+                //     this.bottomPostition[stone.x] = Math.min(this.bottomPostition[stone.x], stone.y - 1)
+                // })
+
+                // add to occupiedFields
+                this.occupiedFields = [...this.outerBorder]
                 this.fixedStones.forEach(stone => {
-                    this.bottomPostition[stone.x] = Math.min(this.bottomPostition[stone.x], stone.y - 1)
+                    this.occupiedFields.push({x: stone.x, y: stone.y})
                 })
                 // initiate new stones & reset reached bottom
-                this.reachedBottom = false
+                //this.reachedBottom = false
                 let newFigure = createRandomFigure()
                 newFigure.forEach(stone => { this.movingStones.push(stone) })
                 //this.movingStones.push(new Stone)
@@ -123,9 +123,8 @@ class Game {
     detectCollision() {
         let numCollisions = 0
         this.movingStones.forEach(stone => {
-            // return [this.occupiedFields].includes([stone.x, stone.y])
             const collisionStoneOccupied = this.occupiedFields.map(function(occupiedField) {
-                return occupiedField.x === stone.x && occupiedField.y === stone.y
+                return (occupiedField.x === stone.x - 1 || occupiedField.x === stone.x + 1) && occupiedField.y === stone.y + 1
             })
             collisionStoneOccupied.forEach(potentialCollision => {
                 if(potentialCollision) {
