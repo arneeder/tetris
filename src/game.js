@@ -17,7 +17,6 @@ class Game {
             this.outerBorder.push({x: i, y: canvasFieldNumHeight})
         }
         this.occupiedFields = [...this.outerBorder]
-        console.log(this.occupiedFields)
     }
     draw() {
         if (frameCount % initialSpped === 0) { 
@@ -26,7 +25,7 @@ class Game {
             this.drawAllStones()
             
 
-            if (!this.detectCollision()) {
+            if (!this.detectCollision(0, 0, 1)) {
                 this.movingStones.forEach(stone => {
                     stone.y += 1
                 })
@@ -75,24 +74,16 @@ class Game {
     }
 
     moveFigureLeft() {
-        // find current left border of figure
-        const leftBorder = this.movingStones.reduce(function(acc, val) {
-            return Math.min(acc, val.x)
-        }, canvasFieldNumWidth)
-        // move left, if still in canvas
-        if (leftBorder > 0) {
+        // move left, if no collision detected
+        if (!this.detectCollision(1, 0, 0)) {
             this.movingStones.forEach(stone => {
             stone.x--
             })
         }
     }
     moveFigureRight() {
-        // find current left border of figure
-        const rightBorder = this.movingStones.reduce(function(acc, val) {
-            return Math.max(acc, val.x)
-        }, 0)
-        // move left, if still in canvas
-        if (rightBorder < canvasFieldNumWidth - 1) {
+        // move left, if no collision detected
+        if (!this.detectCollision(0, 1, 0)) {
             this.movingStones.forEach(stone => {
             stone.x++
             })
@@ -111,11 +102,11 @@ class Game {
         }
     }
 
-    detectCollision() {
+    detectCollision(left, right, bottom) {
         let numCollisions = 0
         this.movingStones.forEach(stone => {
             const collisionStoneOccupied = this.occupiedFields.map(function(occupiedField) {
-                return (occupiedField.x === stone.x - 1 || occupiedField.x === stone.x + 1) && occupiedField.y === stone.y + 1
+                return (occupiedField.x === stone.x - left || occupiedField.x === stone.x + right) && occupiedField.y === stone.y + bottom
             })
             collisionStoneOccupied.forEach(potentialCollision => {
                 if(potentialCollision) {

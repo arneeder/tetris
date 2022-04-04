@@ -10,6 +10,5 @@ class Stone {
     }
     draw() {
         image(this.image, this.x * canvasSquareLength, this.y * canvasSquareLength, canvasSquareLength, canvasSquareLength)
-        console.log([this.x, this.y])
     }
 }

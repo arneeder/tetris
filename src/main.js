@@ -13,9 +13,6 @@ function setup() {
 
 function draw() {
     game.draw()
-    // console.log(game.movingStones)
-    // console.log(game.occupiedFields)
-    game.detectCollision()
 }
 
 function keyPressed() {
