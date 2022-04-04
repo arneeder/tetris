@@ -1,7 +1,6 @@
 **TODO**
 
-* refactor code -> use functions to increase readibility
+* create multiple figures functions and one random
 
-* adjust game constructor to enable one figure
 * adjust all methods to make this one figure work
 * extend to multiple figures
