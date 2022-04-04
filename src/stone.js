@@ -6,7 +6,7 @@ class Stone {
         this.isMoving = isMoving
     }
     preload() {
-        this.image = loadImage('red_square.svg')
+        this.image = loadImage('/assets/red_square.svg')
     }
     draw() {
         image(this.image, this.x * canvasSquareLength, this.y, canvasSquareLength, canvasSquareLength)

@@ -36,6 +36,7 @@ class Game {
             } 
         }
     }
+    
     drawGrid() {
         // DRAW FRAME
         strokeWeight(2)

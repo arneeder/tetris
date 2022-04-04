@@ -1,5 +1,5 @@
-function() checkForCompleteRow {};
-function(lineIndex) removeRow {};
-function() getCanvasPostionFromCurrentField {};
-function() getCurrentFieldFromCanvasPostion {};
-function() drawCanvas()
+function checkForCompleteRow() {};
+function removeRow(lineIndex) {};
+function getCanvasPostionFromCurrentField() {};
+function getCurrentFieldFromCanvasPostion()  {};
+function drawCanvas() {};
