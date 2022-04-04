@@ -1,6 +1,7 @@
 **TODO**
 
-* create multiple figures functions and one random
-
-* adjust all methods to make this one figure work
-* extend to multiple figures
+* enable key listener to trigger functions
+** enable turning
+** enable quick-down
+** enable left
+** enable right

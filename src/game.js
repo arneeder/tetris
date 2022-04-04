@@ -38,7 +38,7 @@ class Game {
                 })
                 // initiate new stones & reset reached bottom
                 this.reachedBottom = false
-                let newFigure = this.createFigureLine()
+                let newFigure = createRandomFigure()
                 newFigure.forEach(stone => { this.movingStones.push(stone) })
                 //this.movingStones.push(new Stone)
                 this.movingStones.forEach(stone => { stone.preload() })
@@ -66,14 +66,5 @@ class Game {
     drawAllStones() {
         this.fixedStones.forEach(stone => { stone.draw() })
         this.movingStones.forEach(stone => { stone.draw() })
-    }
-
-    createFigureLine() {
-        const figureLine = []
-        for (let i =4; i > 0; i--) {
-            let newStone = new Stone (5, -i, true)
-            figureLine.push(newStone)
-        }
-        return figureLine
     }
 }
