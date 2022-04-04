@@ -2,17 +2,13 @@ class Game {
     constructor(initialStones) {
         this.movingStones = initialStones
         this.fixedStones = []
-        this.reachedBottom  = false
-        this.bottomPostition = []
         
         this.outerBorder = []
         this.occupiedFields = []
     }
     setup() {
         let canvas = createCanvas(canvasWidth, canvasHeight);
-        for (let i = 0; i < canvasFieldNumWidth; i++) {
-            this.bottomPostition.push(canvasFieldNumHeight - 1)
-        }
+
         for (let i = 0; i < canvasFieldNumHeight; i++) {
             this.outerBorder.push({x: -1, y: i})
             this.outerBorder.push({x: canvasFieldNumWidth, y: i})
@@ -40,18 +36,13 @@ class Game {
                     this.fixedStones.push(stone)
                 })
                 this.movingStones = []
-                // reset bottom list
-                // this.fixedStones.forEach(stone => {
-                //     this.bottomPostition[stone.x] = Math.min(this.bottomPostition[stone.x], stone.y - 1)
-                // })
 
                 // add to occupiedFields
                 this.occupiedFields = [...this.outerBorder]
                 this.fixedStones.forEach(stone => {
                     this.occupiedFields.push({x: stone.x, y: stone.y})
                 })
-                // initiate new stones & reset reached bottom
-                //this.reachedBottom = false
+                // initiate new stones
                 let newFigure = createRandomFigure()
                 newFigure.forEach(stone => { this.movingStones.push(stone) })
                 //this.movingStones.push(new Stone)
