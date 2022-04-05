@@ -8,6 +8,8 @@ class Game {
 
         this.figureType = initialFigureType
         this.figurePosition = 0
+
+        this.score = 4
     }
     setup() {
         let canvas = createCanvas(canvasWidth, canvasHeight);
@@ -56,6 +58,8 @@ class Game {
                 newFigure.forEach(stone => { this.movingStones.push(stone) })
                 //this.movingStones.push(new Stone)
                 this.movingStones.forEach(stone => { stone.preload() })
+                this.score += 4
+                document.getElementById('score').innerHTML = this.score
             }
         }
     }
