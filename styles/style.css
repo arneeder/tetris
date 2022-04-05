@@ -1,8 +1,46 @@
 body {
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     font-family: "Spartan", sans-serif;
-    background-color: #c8dad3;
+    background-image: url('../assets/cover.jpg');
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: repeat;
+  }
+
+  .side {
+    width: 40vh;
+    height: 700px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    background-color: #71CDDC;
+    opacity: 0.8;
+  }
+
+  h1 {
+    font-family: 'MuseoModerno', cursive;
+    font-size: 100px;
+    color: white;
+    background-color: #CDB3D6;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+  }
+  h2 {
+    font-family: 'MuseoModerno', cursive;
+    font-size: 60px;
+  }
+  p {
+    font-family: 'MuseoModerno', cursive;
+    font-size: 20px;
+  }
+  .line {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
   }

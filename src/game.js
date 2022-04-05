@@ -62,13 +62,15 @@ class Game {
     
     drawGrid() {
         // DRAW FRAME
-        strokeWeight(2)
+        background('#F3F08D')
+        stroke('#F79A96')
+        strokeWeight(5)
         line(0,0,canvasWidth,0)
         line(0,canvasHeight,canvasWidth,canvasHeight)
         line(0,0,0,canvasHeight)
         line(canvasWidth,0,canvasWidth,canvasHeight)
         // REDUCE LINE SIZE FOR INNER LINES
-        strokeWeight(0.1)
+        strokeWeight(2)
         // DRAW HOIZONTAL LINES
         for (let i = 1; i < canvasFieldNumHeight; i++) {
             line(0, i * canvasSquareLength,canvasWidth, i * canvasSquareLength)

@@ -1,4 +1,3 @@
-
 const initialFigureArray = createRandomFigure()
 const initialFigure = initialFigureArray.slice(1)
 const initialFigureType = initialFigureArray[0]
@@ -17,7 +16,9 @@ function setup() {
 function draw() {
     if(game.isGameOver()) {
         console.log('GAME OVER')
-    } else game.draw()
+    } else {
+        game.draw()
+    } 
 }
 
 function keyPressed() {
