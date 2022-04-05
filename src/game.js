@@ -1,10 +1,13 @@
 class Game {
-    constructor(initialStones) {
-        this.movingStones = initialStones
+    constructor(initialFigure, initialFigureType) {
+        this.movingStones = initialFigure
         this.fixedStones = []
         
         this.outerBorder = []
         this.occupiedFields = []
+
+        this.figureType = initialFigureType
+        this.figurePosition = 0
     }
     setup() {
         let canvas = createCanvas(canvasWidth, canvasHeight);
@@ -42,7 +45,10 @@ class Game {
                     this.occupiedFields.push({x: stone.x, y: stone.y})
                 })
                 // initiate new stones
-                let newFigure = createRandomFigure()
+                this.figurePosition = 0
+                let newFigureArray = createRandomFigure()
+                let newFigure = newFigureArray.slice(1)
+                this.figureType = newFigureArray[0]
                 newFigure.forEach(stone => { this.movingStones.push(stone) })
                 //this.movingStones.push(new Stone)
                 this.movingStones.forEach(stone => { stone.preload() })
@@ -82,7 +88,7 @@ class Game {
         }
     }
     moveFigureRight() {
-        // move left, if no collision detected
+        // move right, if no collision detected
         if (!this.detectCollision(0, 1, 0)) {
             this.movingStones.forEach(stone => {
             stone.x++
@@ -99,6 +105,38 @@ class Game {
             this.movingStones.forEach(stone => {
             stone.y++
             })
+        }
+    }
+    turnFigure() {
+        switch (this.figureType) {
+            case 'lineFigure':
+                turnLineFigure(this.movingStones, this.figurePosition);
+                this.figurePosition = (this.figurePosition + 1) % 4;
+                break;
+            case 'squareFigure':
+                turnSquareFigure(this.movingStones, this.figurePosition);
+                this.figurePosition = (this.figurePosition + 1) % 4;
+                break;
+            case 'tFigure':
+                turnTFigure(this.movingStones, this.figurePosition);
+                this.figurePosition = (this.figurePosition + 1) % 4;
+                break;
+            case 'lFigureLeft':
+                turnLFigureLeft(this.movingStones, this.figurePosition);
+                this.figurePosition = (this.figurePosition + 1) % 4;
+                break;
+            case 'lFigureRight':
+                turnLFigureRight(this.movingStones, this.figurePosition);
+                this.figurePosition = (this.figurePosition + 1) % 4;
+                break;
+            case 'jaggedFigureLeft':
+                turnJaggedFigureLeft(this.movingStones, this.figurePosition);
+                this.figurePosition = (this.figurePosition + 1) % 4;
+                break;
+            case 'jaggedFigureRight':
+                turnJaggedFigureRight(this.movingStones, this.figurePosition);
+                this.figurePosition = (this.figurePosition + 1) % 4;
+                break;                       
         }
     }
 
