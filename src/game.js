@@ -97,11 +97,7 @@ class Game {
     }
     moveFigureDown() {
         // find current left border of figure
-        const lowerBorder = this.movingStones.reduce(function(acc, val) {
-            return Math.max(acc, val.y)
-        }, 0)
-        // move left, if still in canvas
-        if (lowerBorder < canvasFieldNumHeight - 1) {
+        if (!this.detectCollision(0, 0, 1)) {
             this.movingStones.forEach(stone => {
             stone.y++
             })

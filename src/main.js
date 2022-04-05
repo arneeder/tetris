@@ -1,3 +1,4 @@
+
 const initialFigureArray = createRandomFigure()
 const initialFigure = initialFigureArray.slice(1)
 const initialFigureType = initialFigureArray[0]
