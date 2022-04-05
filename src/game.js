@@ -38,12 +38,16 @@ class Game {
                     this.fixedStones.push(stone)
                 })
                 this.movingStones = []
+                this.setOccupiedFields()
+                // check if a line is completed, if so: remove it and adjust all stones above
+                const completeRows = this.detectCompleteRows()
+                console.log(completeRows)
+                if (completeRows.length > 0) {
+                    this.fixedStones.filter(stone => !completeRows.includes(stone.y))
+                    this.adjustUpperRows(completeRows)
+                    this.setOccupiedFields()
+                }
 
-                // add to occupiedFields
-                this.occupiedFields = [...this.outerBorder]
-                this.fixedStones.forEach(stone => {
-                    this.occupiedFields.push({x: stone.x, y: stone.y})
-                })
                 // initiate new stones
                 this.figurePosition = 0
                 let newFigureArray = createRandomFigure()
@@ -136,6 +140,14 @@ class Game {
         }
     }
 
+    setOccupiedFields() {
+        this.occupiedFields = []
+        this.occupiedFields = [...this.outerBorder]
+        this.fixedStones.forEach(stone => {
+            this.occupiedFields.push({x: stone.x, y: stone.y})
+        })
+    }
+
     detectCollision(left, right, bottom) {
         let numCollisions = 0
         this.movingStones.forEach(stone => {
@@ -151,4 +163,48 @@ class Game {
         if (numCollisions > 0) return true
         else return false
     }
+
+    detectCompleteRows() {
+
+        const completeRows = []
+        for (let i = 0; i < canvasFieldNumHeight; i++) {
+            let countStonesPerRow = 0
+            this.fixedStones.forEach(stone => {
+                if (stone.y === i) countStonesPerRow++
+            })
+            if (countStonesPerRow === canvasFieldNumWidth) {
+                completeRows.push(i+1)
+            }
+        }
+        return completeRows
+    }
+
+adjustUpperRows(arr) {
+    console.log('adjust')
+    for (let completeRowNumber of arr) {
+        this.fixedStones.map(function(stone) {
+            if (stone.y < completeRowNumber) {
+                stone.y++
+            }
+        })
+    }
+}
+
+    // removeCompleteRows(arr) {
+    //     for (let completeRow of arr) {
+    //         for (let index in this.fixedStones) {
+    //             // delete stone if row is complete
+    //             if (this.fixedStones[index].y === completeRow) {
+    //                 this.fixedStones.splice(index, 1)
+    //             }
+    //         }
+    //         // move stone postition one down after line was completed
+    //         for (let index in this.fixedStones) {
+    //             if (this.fixedStones[index].y < completeRow) {
+    //                 this.fixedStones[index].y += 1
+    //             }
+    //         }
+    //     }
+    // }
+
 }

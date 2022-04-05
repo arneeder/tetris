@@ -70,7 +70,7 @@ function createRandomFigure() {
 
 // test -> set explicit figure
 // function createRandomFigure() {
-//     return createJaggedFigureRight()
+//     return createSquareFigure()
 // }
 
 /* TURN FIGURE FUNCTIONS */
