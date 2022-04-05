@@ -15,7 +15,9 @@ function setup() {
 }
 
 function draw() {
-    game.draw()
+    if(game.isGameOver()) {
+        console.log('GAME OVER')
+    } else game.draw()
 }
 
 function keyPressed() {

@@ -189,22 +189,13 @@ adjustUpperRows(arr) {
         })
     }
 }
-
-    // removeCompleteRows(arr) {
-    //     for (let completeRow of arr) {
-    //         for (let index in this.fixedStones) {
-    //             // delete stone if row is complete
-    //             if (this.fixedStones[index].y === completeRow) {
-    //                 this.fixedStones.splice(index, 1)
-    //             }
-    //         }
-    //         // move stone postition one down after line was completed
-    //         for (let index in this.fixedStones) {
-    //             if (this.fixedStones[index].y < completeRow) {
-    //                 this.fixedStones[index].y += 1
-    //             }
-    //         }
-    //     }
-    // }
-
+isGameOver() {
+    if(this.fixedStones.length > 0) {
+        let maxHeight = this.fixedStones.reduce(function(acc, val) {
+            return Math.min(acc, val.y)
+        }, canvasFieldNumHeight)
+        console.log(maxHeight)
+        return maxHeight <= 0
+    }
+}
 }
