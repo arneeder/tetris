@@ -37,7 +37,13 @@ function keyPressed() {
     if (keyCode === LEFT_ARROW) { game.moveFigureLeft() }
     if (keyCode === RIGHT_ARROW) { game.moveFigureRight() }
     if (keyCode === DOWN_ARROW) { game.moveFigureDown() }
-    if (keyCode === UP_ARROW) {  game.turnFigure() }
-    if (keyCode === 32) { game.activateGame() }
-    if (keyCode === 67) { game.cheating = true }
+    if (keyCode === UP_ARROW) {  
+        game.turnFigure()
+        // if (!game.song.isPlaying()) {
+        //     game.song.play()
+        // }
+    }
+    if (keyCode === 32) {
+        game.activateGame()
+    }
 }

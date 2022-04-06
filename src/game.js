@@ -13,7 +13,6 @@ class Game {
         this.score = 4
         this.level = 1
         this.speed = initialSpeed
-        this.cheating = false
         
         this.song
         this.gameOverSound
@@ -75,12 +74,7 @@ class Game {
                 Array.from(scoreNodes).forEach(node => {node.innerHTML = this.score})
                 document.getElementById('level').innerHTML = this.level
                 // create next figure
-                if (this.cheating) {
-                    this.nextFigure = createLineFigure()
-                } else {
-                    this.nextFigure = createRandomFigure()
-                    this.cheating = false
-                }
+                this.nextFigure = createRandomFigure()
                 let node = document.getElementById('next-element')
                 node.innerHTML = '<img src="../assets/' + this.nextFigure[0] + '.png" alt="nextFigure">'
             }
