@@ -11,9 +11,10 @@ class Game {
 
         this.score = 4
         this.level = 1
-
         this.speed = initialSpeed
+        
         this.song
+        this.gameOverSound
     }
     preload() {
         this.song = loadSound('../assets/theme-melody.mp3')

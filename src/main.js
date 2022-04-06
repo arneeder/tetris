@@ -11,6 +11,7 @@ function preload() {
     game.preload()
     game.fixedStones.forEach(stone => { stone.preload() })
     game.movingStones.forEach(stone => { stone.preload() })
+    gameOverSound = loadSound('../assets/gameover.wav')
 }
 
 function setup() {
@@ -19,9 +20,12 @@ function setup() {
 
 function draw() {
     if(game.isGameOver()) {
+        game.song.stop()
+         if (gameActive) {gameOverSound.play()}
         gameActive = false
         document.querySelector('.game-over').classList.remove('transparent')
-        game.song.stop()
+        // game.song.stop()
+        // gameOverSound.play()
     }
     if(gameActive) {
         game.draw()
