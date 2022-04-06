@@ -52,19 +52,61 @@ body {
     z-index: 1;
     height: 100%;
     width: 100%;
-    background-color: black;
+    background-image: url('../assets/gameboy.jpg');
+    background-size: cover;
+    background-position: center;
     position: fixed;
     top: 0px;
     left: 0px;
+  }
+  .content-container {
+    width: 40vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #F3F08D;
+    border-radius: 25px;
+    opacity: 0.7;
+    margin: 100px;
+  }
+  .explenation {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .explenation-content {
+    font-family: 'MuseoModerno', cursive;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .content-container > p {
+    background-color: #CDB3D6;
+    padding: 10px;
+    border-radius: 10px;
+    opacity: 2;
+    box-shadow: 10px 10px #71CDDC;
+  }
+  .explenation img {
+    width: 10vw;
   }
   .game-over {
     z-index: 1;
     height: 100%;
     width: 100%;
-    background-color: green;
+    background-color: #CDB3D6;
     position: fixed;
     top: 0px;
     left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .game-over p {
+    font-size: 30px;
+    color: #F3F08D;
   }
   .transparent {
     opacity: 0;

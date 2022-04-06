@@ -4,7 +4,7 @@ const initialFigureArray = createRandomFigure()
 const initialFigure = initialFigureArray.slice(1)
 const initialFigureType = initialFigureArray[0]
 
-const game = new Game(initialFigure, initialFigureType);
+let game = new Game(initialFigure, initialFigureType);
 
 function preload() {
     
@@ -48,10 +48,6 @@ function keyPressed() {
         // }
     }
     if (keyCode === 32) {
-        activateGame()
-        // gameActive = true
-        // if (!game.song.isPlaying()) {
-        //     game.song.loop()
-        // }
+        game.activateGame()
     }
 }

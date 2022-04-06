@@ -16,7 +16,7 @@
                 <h2>scores</h2>
                 <div class="line">
                     <p>current_score</p>
-                    <p id="score">4</p>
+                    <p class="score">4</p>
                 </div>
                 <div class="line">
                     <p>current_score</p>
@@ -25,8 +25,30 @@
             </div>
         </div>
     </div>
-    <div class="opening-screen"></div>
-    <div class="game-over tranparent"></div>
+    <div class="opening-screen">
+        <div class="content-container">
+            <h1>tetris</h1>
+            <div class="explenation">
+                <img src="assets/keyboard_arrows.png" alt="keyboard arrows">
+                <div class="explenation-content">
+                    <ul>
+                        <li>use left & right arrow <br> to move the figure</li>
+                        <li>use arrow down to move faster</li>
+                        <li>turn figure using upper arrow</li>
+                    </ul>
+                </div>
+            </div>
+            <p>push SPACE-key to start the game</p>
+        </div>
+    </div>
+    <div class="game-over transparent">
+        <h1>GAME OVER</h1>
+        <div class="line">
+            <p>your_score: </p>
+            <p class="score">4</p>
+        </div>
+        <p>press SPACE-key to play again</p>
+    </div>
     <script class="game" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.js"></script>
     <script src="src/constants.js"></script>

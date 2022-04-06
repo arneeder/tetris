@@ -68,7 +68,8 @@ class Game {
                 this.score += 4
                 this.level = Math.ceil(this.score / 40)
                 this.speed = Math.max(initialSpeed - (2 * this.level), 10)
-                document.getElementById('score').innerHTML = this.score
+                let scoreNodes = document.getElementsByClassName('score')
+                Array.from(scoreNodes).forEach(node => {node.innerHTML = this.score})
                 document.getElementById('level').innerHTML = this.level
             }
         }
@@ -210,6 +211,32 @@ isGameOver() {
             return Math.min(acc, val.y)
         }, canvasFieldNumHeight)
         return maxHeight <= 0
+    }
+}
+activateGame() {
+    document.querySelector('.opening-screen').classList.add('transparent')
+    document.querySelector('.game-over').classList.add('transparent')
+    
+    
+    this.fixedStones = []
+    this.outerBorder = []
+    this.occupiedFields = []
+    this.figureType = initialFigureType
+    this.figurePosition = 0
+
+    this.setup()
+
+    this.score = 4
+    this.level = 1
+    this.speed = initialSpeed
+
+    let scoreNodes = document.getElementsByClassName('score')
+    Array.from(scoreNodes).forEach(node => {node.innerHTML = this.score})
+    document.getElementById('level').innerHTML = this.level
+
+    gameActive = true
+    if (!this.song.isPlaying()) {
+        this.song.loop()
     }
 }
 }

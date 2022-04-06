@@ -239,12 +239,3 @@ function turnJaggedFigureRight(arr, position) {
             break;
     }
 }
-
-function activateGame() {
-    document.querySelector('.opening-screen').classList.add('transparent')
-    document.querySelector('.game-over').classList.add('transparent')
-    gameActive = true
-    if (!game.song.isPlaying()) {
-        game.song.loop()
-    }
-}
