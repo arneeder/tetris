@@ -13,6 +13,10 @@ class Game {
         this.level = 1
 
         this.speed = initialSpeed
+        this.song
+    }
+    preload() {
+        this.song = loadSound('../assets/theme-melody.mp3')
     }
     setup() {
         let canvas = createCanvas(canvasWidth, canvasHeight);
@@ -46,7 +50,6 @@ class Game {
                 this.setOccupiedFields()
                 // check if a line is completed, if so: remove it and adjust all stones above
                 const completeRows = this.detectCompleteRows()
-                console.log(completeRows)
                 if (completeRows.length > 0) {
                     this.fixedStones.filter(stone => !completeRows.includes(stone.y))
                     this.adjustUpperRows(completeRows)
@@ -64,8 +67,6 @@ class Game {
                 this.score += 4
                 this.level = Math.ceil(this.score / 40)
                 this.speed = Math.max(initialSpeed - (2 * this.level), 10)
-                console.log(this.level)
-                console.log(this.speed)
                 document.getElementById('score').innerHTML = this.score
                 document.getElementById('level').innerHTML = this.level
             }
@@ -194,7 +195,6 @@ class Game {
     }
 
 adjustUpperRows(arr) {
-    console.log('adjust')
     for (let completeRowNumber of arr) {
         this.fixedStones.map(function(stone) {
             if (stone.y < completeRowNumber) {
@@ -208,7 +208,6 @@ isGameOver() {
         let maxHeight = this.fixedStones.reduce(function(acc, val) {
             return Math.min(acc, val.y)
         }, canvasFieldNumHeight)
-        console.log(maxHeight)
         return maxHeight <= 0
     }
 }
