@@ -20,6 +20,8 @@ function setup() {
 function draw() {
     if(game.isGameOver()) {
         gameActive = false
+        document.querySelector('.game-over').classList.remove('transparent')
+        game.song.stop()
     }
     if(gameActive) {
         game.draw()
@@ -42,9 +44,10 @@ function keyPressed() {
         // }
     }
     if (keyCode === 32) {
-        gameActive = true
-        if (!game.song.isPlaying()) {
-            game.song.loop()
-        }
+        activateGame()
+        // gameActive = true
+        // if (!game.song.isPlaying()) {
+        //     game.song.loop()
+        // }
     }
 }
