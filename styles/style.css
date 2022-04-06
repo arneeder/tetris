@@ -44,3 +44,27 @@ body {
     flex-direction: row;
     align-items: center;
   }
+
+  .game {
+    z-index: -1;
+  }
+  .opening-screen {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+  }
+  .game-over {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+  }

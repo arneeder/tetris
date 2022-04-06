@@ -1,3 +1,5 @@
+let gameActive = false
+
 const initialFigureArray = createRandomFigure()
 const initialFigure = initialFigureArray.slice(1)
 const initialFigureType = initialFigureArray[0]
@@ -5,6 +7,7 @@ const initialFigureType = initialFigureArray[0]
 const game = new Game(initialFigure, initialFigureType);
 
 function preload() {
+    
     game.preload()
     game.fixedStones.forEach(stone => { stone.preload() })
     game.movingStones.forEach(stone => { stone.preload() })
@@ -16,10 +19,16 @@ function setup() {
 
 function draw() {
     if(game.isGameOver()) {
-        console.log('GAME OVER')
-    } else {
+        gameActive = false
+    }
+    if(gameActive) {
         game.draw()
-    } 
+    }
+    // if(game.isGameOver()) {
+    //     console.log('GAME OVER')
+    // } else {
+    //     game.draw()
+    // } 
 }
 
 function keyPressed() {
@@ -28,8 +37,14 @@ function keyPressed() {
     if (keyCode === DOWN_ARROW) { game.moveFigureDown() }
     if (keyCode === UP_ARROW) {  
         game.turnFigure()
+        // if (!game.song.isPlaying()) {
+        //     game.song.play()
+        // }
+    }
+    if (keyCode === 32) {
+        gameActive = true
         if (!game.song.isPlaying()) {
-            game.song.play()
+            game.song.loop()
         }
     }
 }

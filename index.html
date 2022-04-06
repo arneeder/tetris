@@ -9,21 +9,25 @@
     <title>tetris</title>
 </head>
 <body>
-    <div class="side">
-        <h1>tetris</h1>
-        <div class="conainer">
-            <h2>scores</h2>
-            <div class="line">
-                <p>current_score</p>
-                <p id="score">4</p>
-            </div>
-            <div class="line">
-                <p>current_score</p>
-                <p id="level">1</p>
+    <div class="game">
+        <div class="side">
+            <h1>tetris</h1>
+            <div class="conainer">
+                <h2>scores</h2>
+                <div class="line">
+                    <p>current_score</p>
+                    <p id="score">4</p>
+                </div>
+                <div class="line">
+                    <p>current_score</p>
+                    <p id="level">1</p>
+                </div>
             </div>
         </div>
     </div>
-    <script class="test" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+    <div class="opening-screen"></div>
+    <div class="game-over"></div>
+    <script class="game" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.js"></script>
     <script src="src/constants.js"></script>
     <script src="src/functions.js"></script>
