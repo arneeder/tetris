@@ -1,10 +1,6 @@
 let gameActive = false
 
-const initialFigureArray = createRandomFigure()
-const initialFigure = initialFigureArray.slice(1)
-const initialFigureType = initialFigureArray[0]
-
-let game = new Game(initialFigure, initialFigureType);
+let game = new Game();
 
 function preload() {
     

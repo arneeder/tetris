@@ -44,6 +44,13 @@ body {
     flex-direction: row;
     align-items: center;
   }
+  #next-element img {
+    height: 120px;
+  }
+  .container > div {
+    display: flex;
+    justify-content: flex-start;
+  }
 
   .game {
     z-index: -1;

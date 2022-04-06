@@ -1,13 +1,14 @@
 class Game {
-    constructor(initialFigure, initialFigureType) {
-        this.movingStones = initialFigure
+    constructor() {
+        this.initialFigureArray = createRandomFigure()
+        this.figureType = this.initialFigureArray[0]
+        this.figurePosition = 0
+        this.movingStones = this.initialFigureArray.slice(1)
         this.fixedStones = []
+        this.nextFigure = []
         
         this.outerBorder = []
         this.occupiedFields = []
-
-        this.figureType = initialFigureType
-        this.figurePosition = 0
 
         this.score = 4
         this.level = 1
@@ -30,13 +31,15 @@ class Game {
             this.outerBorder.push({x: i, y: canvasFieldNumHeight})
         }
         this.occupiedFields = [...this.outerBorder]
+        this.nextFigure = createRandomFigure()
+        let node = document.getElementById('next-element')
+        node.innerHTML = '<img src="../assets/' + this.nextFigure[0] + '.png" alt="nextFigure">'
     }
     draw() {
         if (frameCount % this.speed === 0) { 
             clear()
             this.drawGrid()
             this.drawAllStones()
-            
 
             if (!this.detectCollision(0, 0, 1)) {
                 this.movingStones.forEach(stone => {
@@ -59,9 +62,8 @@ class Game {
 
                 // initiate new stones
                 this.figurePosition = 0
-                let newFigureArray = createRandomFigure()
-                let newFigure = newFigureArray.slice(1)
-                this.figureType = newFigureArray[0]
+                let newFigure = this.nextFigure.slice(1)
+                this.figureType = this.nextFigure[0]
                 newFigure.forEach(stone => { this.movingStones.push(stone) })
                 //this.movingStones.push(new Stone)
                 this.movingStones.forEach(stone => { stone.preload() })
@@ -71,6 +73,10 @@ class Game {
                 let scoreNodes = document.getElementsByClassName('score')
                 Array.from(scoreNodes).forEach(node => {node.innerHTML = this.score})
                 document.getElementById('level').innerHTML = this.level
+                // create next figure
+                this.nextFigure = createRandomFigure()
+                let node = document.getElementById('next-element')
+                node.innerHTML = '<img src="../assets/' + this.nextFigure[0] + '.png" alt="nextFigure">'
             }
         }
     }
@@ -221,7 +227,7 @@ activateGame() {
     this.fixedStones = []
     this.outerBorder = []
     this.occupiedFields = []
-    this.figureType = initialFigureType
+    this.figureType = this.nextFigure[0]
     this.figurePosition = 0
 
     this.setup()
