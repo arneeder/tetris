@@ -10,6 +10,9 @@ class Game {
         this.figurePosition = 0
 
         this.score = 4
+        this.level = 1
+
+        this.speed = initialSpeed
     }
     setup() {
         let canvas = createCanvas(canvasWidth, canvasHeight);
@@ -24,7 +27,7 @@ class Game {
         this.occupiedFields = [...this.outerBorder]
     }
     draw() {
-        if (frameCount % initialSpped === 0) { 
+        if (frameCount % this.speed === 0) { 
             clear()
             this.drawGrid()
             this.drawAllStones()
@@ -59,7 +62,12 @@ class Game {
                 //this.movingStones.push(new Stone)
                 this.movingStones.forEach(stone => { stone.preload() })
                 this.score += 4
+                this.level = Math.ceil(this.score / 40)
+                this.speed = Math.max(initialSpeed - (2 * this.level), 10)
+                console.log(this.level)
+                console.log(this.speed)
                 document.getElementById('score').innerHTML = this.score
+                document.getElementById('level').innerHTML = this.level
             }
         }
     }

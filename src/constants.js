@@ -5,5 +5,5 @@ let canvasFieldNumHeight = 20
 let canvasWidth = canvasSquareLength * canvasFieldNumWidth
 let canvasHeight = canvasSquareLength * canvasFieldNumHeight
 
-let initialSpped = 30
+let initialSpeed = 30
 let figureStonePostitionY = - canvasSquareLength
