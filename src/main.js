@@ -7,7 +7,7 @@ function preload() {
     game.preload()
     game.fixedStones.forEach(stone => { stone.preload() })
     game.movingStones.forEach(stone => { stone.preload() })
-    gameOverSound = loadSound('..assets/gameover.wav')
+    gameOverSound = loadSound('../assets/gameover.wav')
 }
 
 function setup() {
