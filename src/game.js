@@ -19,7 +19,7 @@ class Game {
         this.gameOverSound
     }
     preload() {
-        this.song = loadSound('../assets/theme-melody.mp3')
+        this.song = loadSound('assets/theme-melody.mp3')
     }
     setup() {
         let canvas = createCanvas(canvasWidth, canvasHeight);
@@ -34,7 +34,7 @@ class Game {
         this.occupiedFields = [...this.outerBorder]
         this.nextFigure = createRandomFigure()
         let node = document.getElementById('next-element')
-        node.innerHTML = '<img src="../assets/' + this.nextFigure[0] + '.png" alt="nextFigure">'
+        node.innerHTML = '<img src="assets/' + this.nextFigure[0] + '.png" alt="nextFigure">'
     }
     draw() {
         if (frameCount % this.speed === 0) { 
