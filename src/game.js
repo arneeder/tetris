@@ -82,6 +82,7 @@ class Game {
                     this.nextFigure = createRandomFigure()
                 }
                 let node = document.getElementById('next-element')
+                console.log('<img src="../assets/' + this.nextFigure[0] + '.png" alt="nextFigure">')
                 node.innerHTML = '<img src="../assets/' + this.nextFigure[0] + '.png" alt="nextFigure">'
             }
         }
