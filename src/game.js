@@ -227,7 +227,6 @@ activateGame() {
     this.fixedStones = []
     this.outerBorder = []
     this.occupiedFields = []
-    this.figureType = this.nextFigure[0]
     this.figurePosition = 0
 
     this.setup()
